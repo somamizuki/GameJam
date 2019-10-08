@@ -2,6 +2,8 @@
 #include "Game.h"
 #include "tkEngine/light/tkDirectionLight.h"
 #include "Player.h"
+#include "GameCamera.h"
+#include "Title.h"
 
 Game::Game()
 {
@@ -13,22 +15,22 @@ Game::~Game()
 }
 bool Game::Start()
 {
-	//ƒJƒƒ‰‚ğİ’èB
-	MainCamera().SetTarget({ 0.0f, 70.0f, 0.0f });
-	MainCamera().SetNear(10.0f);
-	MainCamera().SetFar(10000.0f);
-	MainCamera().SetPosition({ 0.0f, 70.0f, 200.0f });
-	MainCamera().Update();
-
 	GraphicsEngine().GetPostEffect().GetDof().Disable();
+	m_testStage = NewGO<prefab::CSkinModelRender>(0);
+	m_testStage->Init(L"modelData/TestStage.cmo");
+	m_title = NewGO<Title>(0, "title");
 
-	m_player = NewGO<Player>(0, "player");
 
-	
 	return true;
 }
 
 void Game::Update()
 {
+	if (m_title != nullptr && m_title->IsDead())m_title = nullptr;
+	if (m_title == nullptr)
+	{
+		if(!m_player)m_player = NewGO<Player>(0, "player");
+		if(!m_camera)m_camera = NewGO<GameCamera>(1, "camera");
+	}
 
 }
