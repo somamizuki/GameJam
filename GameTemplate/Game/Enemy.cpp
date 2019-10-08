@@ -14,9 +14,9 @@ Enemy::~Enemy()
 bool Enemy::Start()
 {
 	skinModelRender = NewGO<prefab::CSkinModelRender>(0);		//スキンモデルレンダー
-	skinModelRender->Init(L"");									//表示したいモデルのパス
+	//skinModelRender->Init(L"");									//表示したいモデルのパス
 
-	skinModelRender->SetShadowCasterFlag(true);					//モデルの影を描画
+	//skinModelRender->SetShadowCasterFlag(true);					//モデルの影を描画
 
 	return true;
 }
