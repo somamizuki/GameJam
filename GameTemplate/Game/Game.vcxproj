@@ -1804,6 +1804,7 @@
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
+    <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
     <MeshContentTask Include="Assets\modelData\StarSparrow.FBX" />
     <MeshContentTask Include="Assets\modelData\TestStage.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
