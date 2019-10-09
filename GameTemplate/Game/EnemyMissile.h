@@ -11,7 +11,8 @@ public:
 	bool Start();
 	void Update();
 private:
+
+	void AxisUpdate();
 	Player* m_player = nullptr;
-	CVector3 m_moveSpeed;
 };
 

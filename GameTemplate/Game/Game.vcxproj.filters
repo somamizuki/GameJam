@@ -25,6 +25,7 @@
     <ClCompile Include="EnemyMissile.cpp" />
     <ClCompile Include="MissileBase.cpp" />
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="PlayerMissile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -38,6 +39,7 @@
     <ClInclude Include="EnemyMissile.h" />
     <ClInclude Include="MissileBase.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="PlayerMissile.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
