@@ -1770,6 +1770,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MissileBase.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerMissile.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug_Middle|Win32'">Create</PrecompiledHeader>
@@ -1800,6 +1801,7 @@
     <ClInclude Include="HPbar.h" />
     <ClInclude Include="MissileBase.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerMissile.h" />
     <CLInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title.h" />
@@ -1807,6 +1809,8 @@
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
+    <MeshContentTask Include="Assets\modelData\MiniMissile.FBX" />
+    <MeshContentTask Include="Assets\modelData\NormalMissile.FBX" />
     <MeshContentTask Include="Assets\modelData\StarSparrow.FBX" />
     <MeshContentTask Include="Assets\modelData\TestStage.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />
