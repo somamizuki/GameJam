@@ -51,6 +51,8 @@
     <MeshContentTask Include="Assets\modelData\StarSparrow.FBX" />
     <MeshContentTask Include="Assets\modelData\TestStage.FBX" />
     <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
+    <MeshContentTask Include="Assets\modelData\MiniMissile.FBX" />
+    <MeshContentTask Include="Assets\modelData\NormalMissile.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
