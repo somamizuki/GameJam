@@ -51,7 +51,7 @@ private:
 	void Movement();
 	void AxisUpdate();
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
-	CVector3 m_position = CVector3::Zero;
+	CVector3 m_position = {0.0f,500.0f,0.0f};
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CVector3 m_scale = CVector3::One;
 

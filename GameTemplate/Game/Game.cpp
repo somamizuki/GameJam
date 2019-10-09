@@ -6,6 +6,7 @@
 #include "Title.h"
 #include "Enemy.h"
 #include "EnemyMissile.h"
+#include "PlayerMissile.h"
 
 Game::Game()
 {
@@ -31,10 +32,15 @@ void Game::Update()
 	if (m_title != nullptr && m_title->IsDead())m_title = nullptr;
 	if (m_title == nullptr)
 	{
-		if(!m_player)m_player = NewGO<Player>(0, "player");
-		if(!m_camera)m_camera = NewGO<GameCamera>(1, "camera");
+		if (!m_player)m_player = NewGO<Player>(0, "player");
+		if (!m_camera)m_camera = NewGO<GameCamera>(1, "camera");
 		if (!m_enemy)m_enemy = NewGO<Enemy>(0, "enemy");
 		if (!m_missile)m_missile = NewGO<EnemyMissile>(0, "missile");
+		if (!m_playerMissile)
+		{
+			m_playerMissile = NewGO<PlayerMissile>(0, "playermissile");
+			m_playerMissile->SetEnemy(m_enemy);
+		}
 	}
 
 }

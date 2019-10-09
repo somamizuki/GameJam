@@ -17,7 +17,7 @@ bool EnemyMissile::Start()
 
 
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	m_skinModelRender->Init(L"modelData/StarSparrow.cmo");
+	m_skinModelRender->Init(L"modelData/NormalMissile.cmo");
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetScale(m_scale);
 	m_skinModelRender->SetRotation(m_rotation);

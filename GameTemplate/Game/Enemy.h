@@ -61,7 +61,7 @@ private:
 
 
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダーの定義
-	CVector3 m_position = CVector3::Zero;						//ポジションの定義
+	CVector3 m_position = { 0.0f,1000.0f,0.0f };						//ポジションの定義
 	CQuaternion m_rotation = CQuaternion::Identity;				//クォータニオンの定義
 	CVector3 m_scale = CVector3::One;							//大きさの定義
 

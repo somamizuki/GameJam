@@ -13,15 +13,67 @@ PlayerMissile::~PlayerMissile()
 bool PlayerMissile::Start()
 {
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
-	m_skinModelRender->Init(L"modelData/unityChan.cmo");
+	m_skinModelRender->Init(L"modelData/NormalMissile.cmo");
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetRotation(m_rotation);
 	m_skinModelRender->SetScale(m_scale);
+	int i = 0;
+	CVector3 npos;
+	m_level.Init(L"level/PlayerMissile.tkl", [&](LevelObjectData& objectdata) {
+		if (std::wcscmp(objectdata.name, L"NormalMissile") == 0)
+		{
+			npos = objectdata.position;
+		}
+		else if (std::wcscmp(objectdata.name, L"MiniMissile") == 0)
+		{
+			SMiniMissile minimissile;
+			minimissile.m_position = objectdata.position;
+			m_sMiniMissileArray.push_back(minimissile);
 
+
+		}
+		return true;
+	});
+
+	for (auto& minimissile : m_sMiniMissileArray)
+	{
+		minimissile.m_skinModel = NewGO<prefab::CSkinModelRender>(0);
+		minimissile.m_skinModel->Init(L"modelData/MiniMissile.cmo");
+		CVector3 vec = minimissile.m_position - npos;
+		minimissile.m_toNormalMissileDist = vec.Length();
+		vec.Normalize();
+		minimissile.m_toNormalMissile = vec;
+	}
 	return true;
 }
 
 void PlayerMissile::Update()
+{
+	
+	if (m_isFire)
+	{
+		Homing();
+	}
+	else
+	{
+		for (auto& minimissile : m_sMiniMissileArray)
+		{
+			CVector3 vec = m_forward * m_forward.Dot(minimissile.m_toNormalMissile) + m_right * m_right.Dot(minimissile.m_toNormalMissile) + m_up * m_up.Dot(minimissile.m_toNormalMissile);
+			vec.Normalize();
+			minimissile.m_position = m_position + vec * minimissile.m_toNormalMissileDist;
+			minimissile.m_rotation = m_rotation;
+			minimissile.m_skinModel->SetPosition(minimissile.m_position);
+			m_skinModelRender->SetRotation(minimissile.m_rotation);
+
+		}
+	}
+	
+
+	m_skinModelRender->SetPosition(m_position);
+	m_skinModelRender->SetRotation(m_rotation);
+}
+
+void PlayerMissile::Homing()
 {
 	AxisUpdate();
 
@@ -31,26 +83,34 @@ void PlayerMissile::Update()
 		CVector3 vec = toEnemy + m_forward;
 		vec.Normalize();
 		float angle = m_forward.Dot(vec);
-		if (angle > 1.0) {
-			float dir = vec.Dot(m_up);
+		if (angle < 1.0f) {
+			float dir = m_up.Dot(vec);
 			CVector3 axis;
 			axis.Cross(m_forward, vec);
 			axis = axis * dir;
 			axis.Normalize();
 
 			CQuaternion qRot;
-			qRot.SetRotation(axis, 5.0f * angle * GameTime().GetFrameDeltaTime());
+			float deg = CMath::RadToDeg(AcosWrapper(angle));
+			qRot.SetRotationDeg(axis, 5.0f * deg * GameTime().GetFrameDeltaTime());
 			m_rotation.Multiply(qRot);
 		}
 	}
 	AxisUpdate();
 
-	m_moveSpeed = m_forward * 10000.0f * GameTime().GetFrameDeltaTime();
+	m_moveSpeed = m_forward * 1000.0f * GameTime().GetFrameDeltaTime();
 
 	m_position += m_moveSpeed;
+	for (auto& minimissile : m_sMiniMissileArray)
+	{
+		CVector3 vec = m_forward * m_forward.Dot(minimissile.m_toNormalMissile) + m_right * m_right.Dot(minimissile.m_toNormalMissile) + m_up * m_up.Dot(minimissile.m_toNormalMissile);
+		vec.Normalize();
+		minimissile.m_position = m_position + vec * minimissile.m_toNormalMissileDist;
+		minimissile.m_rotation = m_rotation;
+		minimissile.m_skinModel->SetPosition(minimissile.m_position);
+		m_skinModelRender->SetRotation(minimissile.m_rotation);
 
-	m_skinModelRender->SetPosition(m_position);
-	m_skinModelRender->SetRotation(m_rotation);
+	}
 }
 
 void PlayerMissile::AxisUpdate()
