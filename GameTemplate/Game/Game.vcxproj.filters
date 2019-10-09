@@ -50,6 +50,7 @@
     </MeshContentTask>
     <MeshContentTask Include="Assets\modelData\StarSparrow.FBX" />
     <MeshContentTask Include="Assets\modelData\TestStage.FBX" />
+    <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
