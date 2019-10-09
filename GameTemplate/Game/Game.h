@@ -9,6 +9,7 @@ class GameCamera;
 class Title;
 class Enemy;
 class HPbar;
+class PlayerMissile;
 class Game : public IGameObject
 {
 public:
@@ -23,5 +24,6 @@ private:
 	Title* m_title = nullptr;
 	Enemy* m_enemy = nullptr;
 	HPbar* m_hpbar = nullptr;
+	PlayerMissile* m_playerMissile = nullptr;
 };
 

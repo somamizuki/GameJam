@@ -22,7 +22,7 @@ bool GameCamera::Start()
 		SetPosition(m_player->GetPosition() + toCamVec);
 		SetTarget(m_player->GetPosition()+m_player->GetUp() * 500.0f);
 	}
-	SetFar(100000.0f);
+	SetFar(1000000.0f);
 	SetNear(10.0f);
 	CameraUpdate();
 

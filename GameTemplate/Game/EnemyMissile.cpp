@@ -37,11 +37,8 @@ void EnemyMissile::Update()
 		float angle = m_forward.Dot(vec);
 		if (angle < 1.0f)
 		{
-			float dir = m_up.Dot(vec);
-
 			CVector3 axis;
 			axis.Cross(m_forward, vec);
-			axis = axis * dir;
 			axis.Normalize();
 			CQuaternion qRot;
 			float deg = CMath::RadToDeg(AcosWrapper(angle));

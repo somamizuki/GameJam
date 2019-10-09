@@ -34,10 +34,10 @@ private:
 	CLevel m_level;
 	struct SMiniMissile {
 		prefab::CSkinModelRender* m_skinModel = nullptr;
-		CVector3 m_toNormalMissile=CVector3::Zero;
+		CVector3 m_toMiniMissile=CVector3::Zero;
 		CVector3 m_position=CVector3::Zero;
 		CQuaternion m_rotation = CQuaternion::Identity;
-		float m_toNormalMissileDist = 0.0f;
+		float m_toMiniMissileDist = 0.0f;
 	};
 	std::vector< SMiniMissile> m_sMiniMissileArray;
 	bool m_isFire = true;
