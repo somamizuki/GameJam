@@ -50,7 +50,7 @@ void Player::Movement()
 	float DeltaTime = GameTime().GetFrameDeltaTime();
 	m_moveSpeed = CVector3::Zero;
 	if (PadInput_RT) m_speed = min(MAX_SPEED, m_speed + ACCELERATION);
-	if (!PadInput_RT) m_speed = min(max(DEFAULT_SPEED, m_speed- ACCELERATION), m_speed + ACCELERATION);
+	if (!PadInput_RT) m_speed = min(max(0.0f, m_speed- ACCELERATION), m_speed + ACCELERATION);
 	m_moveSpeed += m_forward * m_speed;
 
 	CQuaternion qRot;
