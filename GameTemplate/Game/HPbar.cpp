@@ -57,15 +57,16 @@ void HPbar::BarBack()
 	m_sprite->SetPosition(m_position);		//位置を伝える
 }
 /*
-float HPbar::ReduceHpBar()
+void HPbar::ReduceHpBar()
 {
 	//プレイヤーのHPがいくつ減ったのか計算
-	50 - m_hp = m_reduceHp;			//エラー出してる型がある想定のプログラム 仮
+	50 - m_hp = m_reduceHp;			
 
 	//プレイヤーのHPとHPバーを同期させる
 	if (m_player != nullptr) {
-		if (m_reduceHp >= 10) {
-			m_scale -= {-0.2f, 0.0f, 0.0f};
+		if (m_reduceHp >= 5) {
+			m_scale -= {-0.1f, 0.0f, 0.0f};
+			m_sprite->SetScale(m_scale);
 		}
 	}
 }

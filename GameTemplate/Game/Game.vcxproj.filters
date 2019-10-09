@@ -26,6 +26,7 @@
     <ClCompile Include="MissileBase.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="HPbar.cpp" />
+    <ClCompile Include="PlayerMissile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -40,6 +41,7 @@
     <ClInclude Include="MissileBase.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="HPbar.h" />
+    <ClInclude Include="PlayerMissile.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -53,6 +55,8 @@
     <MeshContentTask Include="Assets\modelData\StarSparrow.FBX" />
     <MeshContentTask Include="Assets\modelData\TestStage.FBX" />
     <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
+    <MeshContentTask Include="Assets\modelData\MiniMissile.FBX" />
+    <MeshContentTask Include="Assets\modelData\NormalMissile.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
@@ -62,5 +66,6 @@
     <ImageContentTask Include="Assets\sprite\TestTitle.png" />
     <ImageContentTask Include="Assets\sprite\Ui_BackGround.png" />
     <ImageContentTask Include="Assets\sprite\ui_HpBar.png" />
+    <ImageContentTask Include="Assets\sprite\ui_PressA.png" />
   </ItemGroup>
 </Project>
