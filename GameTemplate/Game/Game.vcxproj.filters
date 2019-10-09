@@ -25,6 +25,7 @@
     <ClCompile Include="EnemyMissile.cpp" />
     <ClCompile Include="MissileBase.cpp" />
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="HPbar.cpp" />
     <ClCompile Include="PlayerMissile.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +40,7 @@
     <ClInclude Include="EnemyMissile.h" />
     <ClInclude Include="MissileBase.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="HPbar.h" />
     <ClInclude Include="PlayerMissile.h" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +62,10 @@
     <ImageContentTask Include="Assets\sprite\dummy.png">
       <Filter>Assets\sprite</Filter>
     </ImageContentTask>
+    <ImageContentTask Include="Assets\sprite\TestTitle2.png" />
     <ImageContentTask Include="Assets\sprite\TestTitle.png" />
+    <ImageContentTask Include="Assets\sprite\Ui_BackGround.png" />
+    <ImageContentTask Include="Assets\sprite\ui_HpBar.png" />
+    <ImageContentTask Include="Assets\sprite\ui_PressA.png" />
   </ItemGroup>
 </Project>

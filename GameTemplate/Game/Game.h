@@ -8,8 +8,7 @@ class Player;
 class GameCamera;
 class Title;
 class Enemy;
-class EnemyMissile;
-class PlayerMissile;
+class HPbar;
 class Game : public IGameObject
 {
 public:
@@ -23,7 +22,6 @@ private:
 	prefab::CSkinModelRender* m_testStage = nullptr;
 	Title* m_title = nullptr;
 	Enemy* m_enemy = nullptr;
-	EnemyMissile* m_missile = nullptr;
-	PlayerMissile* m_playerMissile = nullptr;
+	HPbar* m_hpbar = nullptr;
 };
 
