@@ -1,6 +1,8 @@
 #pragma once
 #include "MissileBase.h"
 
+class Player;
+
 class EnemyMissile :public MissileBase
 {
 public:
@@ -9,7 +11,7 @@ public:
 	bool Start();
 	void Update();
 private:
-	CVector3* playerPos;
+	Player* m_player = nullptr;
 	CVector3 m_moveSpeed;
 };
 
