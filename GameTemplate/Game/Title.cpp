@@ -4,7 +4,7 @@
 bool Title::Start()
 {
 	m_sprite = NewGO<prefab::CSpriteRender>(0);
-	m_sprite->Init(L"sprite/TestTitle.dds", GraphicsEngine().GetFrameBufferWidth(), GraphicsEngine().GetFrameBufferHeight());
+	m_sprite->Init(L"sprite/TestTitle2.dds" ,1280.0f, 720.0f);
 	return true;
 }
 
@@ -16,6 +16,8 @@ void Title::Update()
 	m_mulColor.w = 1.0f;
 	m_sprite->SetMulColor(m_mulColor);
 	if (m_mulColor.x < 0.1f)DeleteGO(this);
+	int a = GraphicsEngine().GetFrameBufferWidth();
+	int b = 0;
 }
 
 void Title::OnDestroy()

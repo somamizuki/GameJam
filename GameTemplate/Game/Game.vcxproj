@@ -1766,6 +1766,7 @@
     <ClCompile Include="EnemyMissile.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameCamera.cpp" />
+    <ClCompile Include="HPbar.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MissileBase.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -1796,6 +1797,7 @@
     <ClInclude Include="EnemyMissile.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="HPbar.h" />
     <ClInclude Include="MissileBase.h" />
     <ClInclude Include="Player.h" />
     <CLInclude Include="resource.h" />
@@ -1813,7 +1815,16 @@
     <ImageContentTask Include="Assets\sprite\dummy.png" />
   </ItemGroup>
   <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\TestTitle2.png" />
+  </ItemGroup>
+  <ItemGroup>
     <ImageContentTask Include="Assets\sprite\TestTitle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\Ui_BackGround.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\ui_HpBar.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

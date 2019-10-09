@@ -5,6 +5,7 @@
 #include "GameCamera.h"
 #include "Title.h"
 #include "Enemy.h"
+#include "HPbar.h"
 
 Game::Game()
 {
@@ -33,6 +34,7 @@ void Game::Update()
 		if(!m_player)m_player = NewGO<Player>(0, "player");
 		if(!m_camera)m_camera = NewGO<GameCamera>(1, "camera");
 		if (!m_enemy)m_enemy = NewGO<Enemy>(0, "enemy");
+		if (!m_hpbar)m_hpbar = NewGO<HPbar>(0, "Hpbar");
 	}
 
 }
