@@ -9,14 +9,14 @@ Enemy::Enemy()
 
 Enemy::~Enemy()
 {
-	
+
 }
 
 bool Enemy::Start()
 {
 
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);		//スキンモデルレンダー
-	//skinModelRender->Init(L"");									//表示したいモデルのパス
+	m_skinModelRender->Init(L"modelData/Enemy.cmo");									//表示したいモデルのパス
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetRotation(m_rotation);
 	m_skinModelRender->SetScale(m_scale);
@@ -29,7 +29,7 @@ bool Enemy::Start()
 void Enemy::Update()
 {
 	GetPlayerInfo();
-
+	EnemyMovement();
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetRotation(m_rotation);
 	m_skinModelRender->SetScale(m_scale);
@@ -42,25 +42,23 @@ void Enemy::OnDestroy()
 
 void Enemy::GetPlayerInfo()
 {
-	if (m_player!=nullptr) {
+	if (m_player != nullptr) {
 		m_playerInfo.Forward = m_player->GetForward();
 		m_playerInfo.Position = m_player->GetPosition();
 		m_playerInfo.Right = m_player->GetRight();
 		m_playerInfo.Up = m_player->GetUp();
 	}
-	
+
 }
 
 void Enemy::EnemyMovement()
 {
-	const float ROT_SPEED = 300.0f;
-
+	m_moveSpeed = CVector3::Zero;
+	const float ROLL_SPEED = 500.0f;
+	const float PITCH_SPEED = 200.0f;
 	AxisUpdate();
 	CVector3 vec = CVector3::Zero;
-
-	CVector3 target = CVector3::Zero;
-	target.y = 5000.0f;
-	CVector3 toTarget = target - m_playerInfo.Position;
+	CVector3 toTarget = m_playerInfo.Position - m_position;
 	toTarget.Normalize();
 	float dotresult = toTarget.Dot(m_up);
 	vec += m_up * dotresult;
@@ -71,14 +69,25 @@ void Enemy::EnemyMovement()
 	float dir = 0.0f;
 	dir = vec.Dot(m_right);
 	CQuaternion qRot;
-	qRot.SetRotationDeg(m_forward, ROT_SPEED * -dir*GameTime().GetFrameDeltaTime());
+	qRot.SetRotationDeg(m_forward, ROLL_SPEED * -dir * GameTime().GetFrameDeltaTime());
 	m_rotation.Multiply(qRot);
 	AxisUpdate();
-	dir = vec.Dot(m_right);
-	qRot.SetRotationDeg(m_right, ROT_SPEED * -dir * GameTime().GetFrameDeltaTime());
+
+	vec = CVector3::Zero;
+	dotresult = toTarget.Dot(m_up);
+	vec += m_up * dotresult;
+	dotresult = toTarget.Dot(m_forward);
+	vec += m_forward * dotresult;
+	vec.Normalize();
+
+
+
+	dir = vec.Dot(m_up);
+	qRot.SetRotationDeg(m_right, PITCH_SPEED * -dir * GameTime().GetFrameDeltaTime());
 	m_rotation.Multiply(qRot);
 	AxisUpdate();
-	m_moveSpeed += m_forward * 10000.0f;
+	m_moveSpeed += m_forward * 15000.0f;
+	m_position += m_moveSpeed * GameTime().GetFrameDeltaTime();
 }
 
 void Enemy::FollowPlayer()

@@ -75,5 +75,6 @@ private:
 	CVector3 m_moveSpeed = CVector3::Zero;
 	Player* m_player = nullptr;
 	SPlayerInfo m_playerInfo;
+	float v = 0.0f;
 };
 
