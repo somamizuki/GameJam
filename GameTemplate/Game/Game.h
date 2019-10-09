@@ -7,6 +7,7 @@
 class Player;
 class GameCamera;
 class Title;
+class Enemy;
 class Game : public IGameObject
 {
 public:
@@ -19,5 +20,6 @@ private:
 	GameCamera* m_camera = nullptr;
 	prefab::CSkinModelRender* m_testStage = nullptr;
 	Title* m_title = nullptr;
+	Enemy* m_enemy = nullptr;
 };
 
