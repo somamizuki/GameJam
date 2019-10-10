@@ -81,5 +81,7 @@ private:
 	CShaderResourceView m_normalSRV;
 	CShaderResourceView m_specSRV;
 	prefab::CEffect* m_effect = nullptr;
+	CCharacterController m_characon;
+	
 };
 
