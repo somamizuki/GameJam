@@ -1853,6 +1853,11 @@
   <ItemGroup>
     <ImageContentTask Include="Assets\modelData\StarSparrow_Normal.png" />
   </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Assets\sound\t_select.wav">
+      <FileType>Document</FileType>
+    </CustomBuild>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />

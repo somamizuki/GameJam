@@ -80,4 +80,7 @@
     <ImageContentTask Include="Assets\modelData\spec.png" />
     <ImageContentTask Include="Assets\modelData\StarSparrow_Normal.png" />
   </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Assets\sound\t_select.wav" />
+  </ItemGroup>
 </Project>
