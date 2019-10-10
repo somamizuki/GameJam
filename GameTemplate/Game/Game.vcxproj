@@ -1848,6 +1848,9 @@
     <ImageContentTask Include="Assets\sprite\Ui_MissileBark.png" />
   </ItemGroup>
   <ItemGroup>
+    <ImageContentTask Include="Assets\modelData\spec.png" />
+  </ItemGroup>
+  <ItemGroup>
     <ImageContentTask Include="Assets\modelData\StarSparrow_Normal.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

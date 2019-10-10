@@ -77,6 +77,7 @@
     <ImageContentTask Include="Assets\sprite\ui_PressA.png" />
     <ImageContentTask Include="Assets\sprite\Ui_MissileBack.png" />
     <ImageContentTask Include="Assets\sprite\Ui_MissileBark.png" />
+    <ImageContentTask Include="Assets\modelData\spec.png" />
     <ImageContentTask Include="Assets\modelData\StarSparrow_Normal.png" />
   </ItemGroup>
 </Project>

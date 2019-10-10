@@ -79,6 +79,7 @@ private:
 	CVector3 m_tomissilePos = CVector3::Zero;
 
 	CShaderResourceView m_normalSRV;
-	CShaderResourceView m_emissionSRV;
+	CShaderResourceView m_specSRV;
+	prefab::CEffect* m_effect = nullptr;
 };
 

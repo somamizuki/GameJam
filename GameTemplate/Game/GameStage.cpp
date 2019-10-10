@@ -15,8 +15,11 @@ GameStage::~GameStage()
 
 bool GameStage::Start()
 {
+	m_direction.Normalize();
+	
+	GraphicsEngine().GetDirectionShadowMap().SetLightDirection(m_direction);
 	GraphicsEngine().GetPostEffect().GetDof().Disable();
-
+	GraphicsEngine().GetDirectionShadowMap().SetLightHeight(/*m_player->GetPosition().y+*/5000.0f);
 
 
 	m_camera = NewGO<GameCamera>(1, "camera");
@@ -24,6 +27,8 @@ bool GameStage::Start()
 	CVector4 color = CVector4::White*10.0f;
 	color.w = 1.0f;
 	m_light->SetColor(color);
+	m_light->SetDirection(m_direction);
+	
 	m_hpbar = NewGO<HPbar>(0, "Hpbar");
 	m_sky = NewGO<prefab::CSky>(0);
 	m_sky->SetScale({ 800000.0f,800000.0f ,800000.0f });
@@ -42,7 +47,14 @@ bool GameStage::Start()
 		}
 		else if (std::wcscmp(objectdata.name, L"ocean") == 0)
 		{
-			return false;
+			m_testStage = NewGO<prefab::CSkinModelRender>(0);
+			m_testStage->Init(L"modelData/ocean.cmo");
+			m_testStage->SetPosition(objectdata.position);
+			m_specSRV.CreateFromDDSTextureFromFile(L"modelData/spec.dds");
+			m_testStage->FindMaterial([&](auto material) {
+				material->SetSpecularMap(m_specSRV.GetBody());
+			});
+			m_testStage->SetShadowReceiverFlag(true);
 		}
 		else if (std::wcscmp(objectdata.name, L"island") == 0)
 		{
@@ -63,5 +75,5 @@ bool GameStage::Start()
 
 void GameStage::Update()
 {
-
+	
 }
