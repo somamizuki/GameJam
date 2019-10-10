@@ -11,13 +11,13 @@ public:
 	void BarBack();
 
 private:
-	//float ReduceHpBar();
+	void ReduceHpBar();
 
 	Player* m_player = nullptr;
 	prefab::CSpriteRender* m_sprite = nullptr;
+	prefab::CSpriteRender* m_backsprite = nullptr;
 	CVector3 m_position = CVector3::Zero;
-	CVector3 m_scale = CVector3::Zero;
-
-	float reduseHp = 0;
+	CVector3 m_backPos = CVector3::Zero;
+	CVector3 m_scale = CVector3::One;
 };
 
