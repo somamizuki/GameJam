@@ -47,28 +47,43 @@ bool PlayerMissile::Start()
 
 void PlayerMissile::Update()
 {
-	
+
 	if (m_isFire)
 	{
-		Homing();
-	}
-	else
-	{
+		if (m_enemy)Homing();
+		AxisUpdate();
+
+		m_moveSpeed = m_forward * m_speed * GameTime().GetFrameDeltaTime();
+
+		m_position += m_moveSpeed;
 		for (auto& minimissile : m_sMiniMissileArray)
 		{
-			CVector3 vec = m_forward * m_forward.Dot(minimissile.m_toMiniMissile) + m_right * m_right.Dot(minimissile.m_toMiniMissile) + m_up * m_up.Dot(minimissile.m_toMiniMissile);
+			CVector3 vec = m_right * minimissile.m_toMiniMissile.x + m_up * minimissile.m_toMiniMissile.y + m_forward * minimissile.m_toMiniMissile.z;
 			vec.Normalize();
 			minimissile.m_position = m_position + vec * minimissile.m_toMiniMissileDist;
 			minimissile.m_rotation = m_rotation;
 			minimissile.m_skinModel->SetPosition(minimissile.m_position);
-			m_skinModelRender->SetRotation(minimissile.m_rotation);
+			minimissile.m_skinModel->SetRotation(minimissile.m_rotation);
 
 		}
+		m_speed = min(MAX_SPEED, m_speed + 5000.0f * GameTime().GetFrameDeltaTime());
+		m_timer += 1.0f * GameTime().GetFrameDeltaTime();
+
+		if (m_timer > 5.0f)
+		{
+			for (auto& minimissile : m_sMiniMissileArray)
+			{
+				DeleteGO(minimissile.m_skinModel);
+				DeleteGO(m_skinModelRender);
+				DeleteGO(this);
+			}
+		}
 	}
-	
+
 
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetRotation(m_rotation);
+
 }
 
 void PlayerMissile::Homing()
@@ -78,34 +93,19 @@ void PlayerMissile::Homing()
 	if (m_enemy != nullptr) {
 		CVector3 toEnemy = m_enemy->GetPosition() - m_position;
 		toEnemy.Normalize();
-		CVector3 vec = toEnemy;
+		CVector3 vec = toEnemy + m_forward;
 		vec.Normalize();
 		float angle = m_forward.Dot(vec);
 		if (angle < 1.0f) {
 
 			CVector3 axis;
-			axis.Cross(m_forward,vec);
+			axis.Cross(m_forward, vec);
 			axis.Normalize();
 			CQuaternion qRot;
 			float deg = CMath::RadToDeg(AcosWrapper(angle));
 			qRot.SetRotationDeg(axis, 5.0f * deg * GameTime().GetFrameDeltaTime());
 			m_rotation.Multiply(qRot);
 		}
-	}
-	AxisUpdate();
-
-	m_moveSpeed = m_forward * 10000.0f * GameTime().GetFrameDeltaTime();
-
-	m_position += m_moveSpeed;
-	for (auto& minimissile : m_sMiniMissileArray)
-	{
-		CVector3 vec = m_right * minimissile.m_toMiniMissile.x + m_up * minimissile.m_toMiniMissile.y + m_forward * minimissile.m_toMiniMissile.z;
-		vec.Normalize();
-		minimissile.m_position = m_position + vec * minimissile.m_toMiniMissileDist;
-		minimissile.m_rotation = m_rotation;
-		minimissile.m_skinModel->SetPosition(minimissile.m_position);
-		minimissile.m_skinModel->SetRotation(minimissile.m_rotation);
-
 	}
 }
 

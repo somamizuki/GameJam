@@ -1766,6 +1766,7 @@
     <ClCompile Include="EnemyMissile.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameCamera.cpp" />
+    <ClCompile Include="GameStage.cpp" />
     <ClCompile Include="HPbar.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MissileBase.cpp" />
@@ -1799,6 +1800,7 @@
     <ClInclude Include="EnemyMissile.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameCamera.h" />
+    <ClInclude Include="GameStage.h" />
     <ClInclude Include="HPbar.h" />
     <ClInclude Include="MissileBase.h" />
     <ClInclude Include="MissileGauge.h" />
@@ -1811,8 +1813,12 @@
   </ItemGroup>
   <ItemGroup>
     <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
+    <MeshContentTask Include="Assets\modelData\island.FBX" />
+    <MeshContentTask Include="Assets\modelData\island_long.FBX" />
+    <MeshContentTask Include="Assets\modelData\island_mount.FBX" />
     <MeshContentTask Include="Assets\modelData\MiniMissile.FBX" />
     <MeshContentTask Include="Assets\modelData\NormalMissile.FBX" />
+    <MeshContentTask Include="Assets\modelData\ocean.FBX" />
     <MeshContentTask Include="Assets\modelData\StarSparrow.FBX" />
     <MeshContentTask Include="Assets\modelData\TestStage.FBX" />
     <MeshContentTask Include="Assets\modelData\unityChan.fbx" />

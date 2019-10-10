@@ -27,7 +27,7 @@
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="HPbar.cpp" />
     <ClCompile Include="PlayerMissile.cpp" />
-    <ClCompile Include="MissileGauge.cpp" />
+    <ClCompile Include="GameStage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -43,7 +43,7 @@
     <ClInclude Include="Title.h" />
     <ClInclude Include="HPbar.h" />
     <ClInclude Include="PlayerMissile.h" />
-    <ClInclude Include="MissileGauge.h" />
+    <ClInclude Include="GameStage.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
@@ -59,6 +59,10 @@
     <MeshContentTask Include="Assets\modelData\Enemy.FBX" />
     <MeshContentTask Include="Assets\modelData\MiniMissile.FBX" />
     <MeshContentTask Include="Assets\modelData\NormalMissile.FBX" />
+    <MeshContentTask Include="Assets\modelData\island.FBX" />
+    <MeshContentTask Include="Assets\modelData\island_long.FBX" />
+    <MeshContentTask Include="Assets\modelData\island_mount.FBX" />
+    <MeshContentTask Include="Assets\modelData\ocean.FBX" />
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\dummy.png">
@@ -69,7 +73,5 @@
     <ImageContentTask Include="Assets\sprite\Ui_BackGround.png" />
     <ImageContentTask Include="Assets\sprite\ui_HpBar.png" />
     <ImageContentTask Include="Assets\sprite\ui_PressA.png" />
-    <ImageContentTask Include="Assets\sprite\Ui_MissileBack.png" />
-    <ImageContentTask Include="Assets\sprite\Ui_MissileBark.png" />
   </ItemGroup>
 </Project>
