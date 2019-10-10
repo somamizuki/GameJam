@@ -18,6 +18,11 @@ Player::~Player()
 }
 bool Player::Start()
 {
+	m_characon.Init(500.0f, 500.0f, m_position);
+
+
+
+
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/StarSparrow.cmo");
 	m_skinModelRender->SetPosition(m_position);
@@ -58,7 +63,7 @@ void Player::Update()
 
 void Player::Execute()
 {
-	
+
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetRotation(m_rotation);
 	m_skinModelRender->SetScale(m_scale);
@@ -83,7 +88,7 @@ void Player::Movement()
 	qRot.SetRotationDeg(m_right, PadInput_LY * PITCH_SPEED * DeltaTime);
 	m_rotation.Multiply(qRot);
 	AxisUpdate();
-	m_position += m_moveSpeed * GameTime().GetFrameDeltaTime();
+	m_position = m_characon.Execute(m_moveSpeed,GameTime().GetFrameDeltaTime());
 }
 
 void Player::AxisUpdate()
@@ -100,7 +105,7 @@ void Player::AxisUpdate()
 
 void Player::MissileManager()
 {
-	
+
 	if (!m_missile)
 	{
 		m_missile = NewGO<PlayerMissile>(0);
@@ -113,7 +118,7 @@ void Player::MissileManager()
 		m_missile->SetRotation(m_rotation);
 		if (Pad(0).IsTrigger(enButtonB))
 		{
-			m_missile->Fire(m_speed+5000.0f);
+			m_missile->Fire(m_speed + 5000.0f);
 			m_missile = nullptr;
 		}
 	}
