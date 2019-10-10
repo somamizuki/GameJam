@@ -41,9 +41,10 @@ bool GameStage::Start()
 		}
 		else if (std::wcscmp(objectdata.name, L"Enemy") == 0)
 		{
-			m_enemy = NewGO<Enemy>(0, "enemy");
+			Enemy* m_enemy = NewGO<Enemy>(0, "enemy");
 			m_enemy->SetPosition(objectdata.position);
 			m_enemy->SetRotation(objectdata.rotation);
+			m_enemyArray.push_back(m_enemy);
 		}
 		else if (std::wcscmp(objectdata.name, L"ocean") == 0)
 		{

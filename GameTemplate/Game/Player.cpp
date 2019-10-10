@@ -1,13 +1,16 @@
 #include "stdafx.h"
 #include "Player.h"
 #include "PlayerMissile.h"
+#include "Enemy.h"
+#include "GameStage.h"
 
 namespace {
 	const float MAX_SPEED = 20000.0f;
 	const float ACCELERATION = 100.0f;
 	const float DEFAULT_SPEED = 5000.0f;
-	const float ROLL_SPEED = 100.0f;
-	const float PITCH_SPEED = 200.0f;
+	const float ROLL_SPEED = 200.0f;
+	const float PITCH_SPEED = 100.0f;
+	const float YAW_SPEED = 20.0f;
 }
 
 Player::Player()
@@ -19,9 +22,6 @@ Player::~Player()
 bool Player::Start()
 {
 	m_characon.Init(500.0f, 500.0f, m_position);
-
-
-
 
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/StarSparrow.cmo");
@@ -50,6 +50,8 @@ bool Player::Start()
 		return true;
 	});
 	m_tomissilePos = mpos - ppos;
+	m_stage = FindGO<GameStage>("stage");
+
 	return true;
 }
 
@@ -75,10 +77,12 @@ void Player::Movement()
 	float PadInput_LY = Pad(0).GetLStickYF();
 	bool PadInput_RT = Pad(0).IsPress(enButtonRB2);
 	bool PadInput_LT = Pad(0).IsPress(enButtonLB2);
+	bool PadInput_RB = Pad(0).IsPress(enButtonRB1);
+	bool PadInput_LB = Pad(0).IsPress(enButtonLB1);
 	float DeltaTime = GameTime().GetFrameDeltaTime();
 	m_moveSpeed = CVector3::Zero;
 	if (PadInput_RT) m_speed = min(MAX_SPEED, m_speed + ACCELERATION);
-	if (!PadInput_RT) m_speed = min(max(DEFAULT_SPEED, m_speed - ACCELERATION), m_speed + ACCELERATION);
+	if (!PadInput_RT) m_speed = min(max(0.0f, m_speed - ACCELERATION), m_speed + ACCELERATION);
 	m_moveSpeed += m_forward * m_speed;
 
 	CQuaternion qRot;
@@ -88,7 +92,19 @@ void Player::Movement()
 	qRot.SetRotationDeg(m_right, PadInput_LY * PITCH_SPEED * DeltaTime);
 	m_rotation.Multiply(qRot);
 	AxisUpdate();
-	m_position = m_characon.Execute(m_moveSpeed,GameTime().GetFrameDeltaTime());
+	if (PadInput_RB)
+	{
+		qRot.SetRotationDeg(m_up, YAW_SPEED * DeltaTime);
+		m_rotation.Multiply(qRot);
+		AxisUpdate();
+	}
+	if (PadInput_LB)
+	{
+		qRot.SetRotationDeg(m_up, -YAW_SPEED * DeltaTime);
+		m_rotation.Multiply(qRot);
+		AxisUpdate();
+	}
+	m_position = m_characon.Execute(m_moveSpeed, GameTime().GetFrameDeltaTime());
 }
 
 void Player::AxisUpdate()
@@ -116,10 +132,28 @@ void Player::MissileManager()
 		CVector3 vec = m_right * m_tomissilePos.x + m_up * m_tomissilePos.y + m_forward * m_tomissilePos.z;
 		m_missile->SetPosition(m_position + vec);
 		m_missile->SetRotation(m_rotation);
+
+		float maxDot = -100.0f;
+		for (const auto& enemy : m_stage->GetEnemyArray())
+		{
+			CVector3 toEnemy = enemy->GetPosition() - m_position;
+			toEnemy.Normalize();
+			float dotresult = m_forward.Dot(toEnemy);
+			if (dotresult < 0.85f)
+			{
+				continue;
+			}
+			if (dotresult > maxDot)
+			{
+				maxDot = dotresult;
+				m_missile->SetEnemy(enemy);
+			}
+		}
 		if (Pad(0).IsTrigger(enButtonB))
 		{
 			m_missile->Fire(m_speed + 5000.0f);
 			m_missile = nullptr;
 		}
+		if (m_missile)m_missile->SetEnemy(nullptr);
 	}
 }

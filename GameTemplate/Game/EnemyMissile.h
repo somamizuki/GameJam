@@ -11,8 +11,9 @@ public:
 	bool Start();
 	void Update();
 private:
-
-	void AxisUpdate();
+	void Homing();
+	
 	Player* m_player = nullptr;
+	bool m_enableHoming = false;
 };
 

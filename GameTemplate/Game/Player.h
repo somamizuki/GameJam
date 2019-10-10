@@ -1,9 +1,11 @@
 #pragma once
 
 class PlayerMissile;
+class Enemy;
+class GameStage;
 class Player :public IGameObject
 {
-	
+
 public:
 	Player();
 	~Player();
@@ -63,7 +65,7 @@ private:
 	void AxisUpdate();
 	void MissileManager();
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
-	CVector3 m_position = {0.0f,500.0f,0.0f};
+	CVector3 m_position = { 0.0f,500.0f,0.0f };
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CVector3 m_scale = CVector3::One;
 
@@ -82,6 +84,6 @@ private:
 	CShaderResourceView m_specSRV;
 	prefab::CEffect* m_effect = nullptr;
 	CCharacterController m_characon;
-	
+	GameStage* m_stage = nullptr;
 };
 

@@ -28,6 +28,28 @@ bool EnemyMissile::Start()
 void EnemyMissile::Update()
 {
 	AxisUpdate();
+	if (m_isFire)
+	{
+		if (m_enableHoming)Homing();
+		m_moveSpeed = m_forward * 10000.0f * GameTime().GetFrameDeltaTime();
+		m_position += m_moveSpeed;
+		m_speed = min(MAX_SPEED, m_speed + 5000.0f * GameTime().GetFrameDeltaTime());
+		m_timer += 1.0f * GameTime().GetFrameDeltaTime();
+
+		if (m_timer > 5.0f)
+		{
+			DeleteGO(m_skinModelRender);
+			DeleteGO(this);
+		}
+	}
+
+	m_skinModelRender->SetPosition(m_position);
+	m_skinModelRender->SetRotation(m_rotation);
+}
+
+void EnemyMissile::Homing()
+{
+	AxisUpdate();
 
 	if (m_player != nullptr) {
 		CVector3 toPlayer = m_player->GetPosition() - m_position;
@@ -44,26 +66,12 @@ void EnemyMissile::Update()
 			float deg = CMath::RadToDeg(AcosWrapper(angle));
 			qRot.SetRotationDeg(axis, 5.0f * deg * GameTime().GetFrameDeltaTime());
 			m_rotation.Multiply(qRot);
+			AxisUpdate();
+		}
+		angle = m_forward.Dot(toPlayer);
+		if (angle < 0.0f)
+		{
+			m_enableHoming = false;
 		}
 	}
-	AxisUpdate();
-
-	m_moveSpeed = m_forward * 10000.0f * GameTime().GetFrameDeltaTime();
-
-	m_position += m_moveSpeed;
-
-	m_skinModelRender->SetPosition(m_position);
-	m_skinModelRender->SetRotation(m_rotation);
-}
-
-void EnemyMissile::AxisUpdate()
-{
-	CMatrix mRot;
-	mRot.MakeRotationFromQuaternion(m_rotation);
-	m_forward = { mRot.m[2][0],mRot.m[2][1] ,mRot.m[2][2] };
-	m_right = { mRot.m[0][0],mRot.m[0][1] ,mRot.m[0][2] };
-	m_up = { mRot.m[1][0],mRot.m[1][1] ,mRot.m[1][2] };
-	m_forward.Normalize();
-	m_right.Normalize();
-	m_up.Normalize();
 }

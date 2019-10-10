@@ -105,18 +105,12 @@ void PlayerMissile::Homing()
 			float deg = CMath::RadToDeg(AcosWrapper(angle));
 			qRot.SetRotationDeg(axis, 5.0f * deg * GameTime().GetFrameDeltaTime());
 			m_rotation.Multiply(qRot);
+			AxisUpdate();
+		}
+		angle = m_forward.Dot(toEnemy);
+		if (angle < 0.0f)
+		{
+			m_enemy = nullptr;
 		}
 	}
-}
-
-void PlayerMissile::AxisUpdate()
-{
-	CMatrix mRot;
-	mRot.MakeRotationFromQuaternion(m_rotation);
-	m_forward = { mRot.m[2][0],mRot.m[2][1],mRot.m[2][2] };
-	m_right = { mRot.m[0][0],mRot.m[0][1],mRot.m[0][2] };
-	m_up = { mRot.m[1][0],mRot.m[1][1],mRot.m[1][2] };
-	m_forward.Normalize();
-	m_right.Normalize();
-	m_up.Normalize();
 }

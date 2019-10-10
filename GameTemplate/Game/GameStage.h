@@ -13,11 +13,15 @@ public:
 
 	bool Start();
 	void Update();
+	const std::list<Enemy*>& GetEnemyArray() const
+	{
+		return m_enemyArray;
+	}
+
 private:
 	Player* m_player = nullptr;
 	GameCamera* m_camera = nullptr;
 	prefab::CSkinModelRender* m_testStage = nullptr;
-	Enemy* m_enemy = nullptr;
 	HPbar* m_hpbar = nullptr;
 	CLevel m_level;
 	prefab::CSky* m_sky = nullptr;
@@ -25,5 +29,6 @@ private:
 	CVector3 m_direction = { 1.0f,-1.0f,0.0f };
 	CShaderResourceView m_specSRV;
 	CPhysicsStaticObject m_rigidBody;
+	std::list<Enemy*> m_enemyArray;
 };
 

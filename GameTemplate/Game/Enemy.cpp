@@ -53,12 +53,26 @@ void Enemy::GetPlayerInfo()
 
 void Enemy::EnemyMovement()
 {
+	AxisUpdate();
+	CVector3 Target = m_playerInfo.Position;
+
+	if (m_position.y < 5000.0f)
+	{
+		Target += CVector3::AxisY * 1000000.0f;
+		m_speed = min(MAX_SPEED, (m_position.y));
+
+	}
+	else
+	{
+		m_speed = min(MAX_SPEED, m_speed + 10000.0f * GameTime().GetFrameDeltaTime());
+	}
+
 	m_moveSpeed = CVector3::Zero;
 	const float ROLL_SPEED = 200.0f;
 	const float PITCH_SPEED = 100.0f;
 	AxisUpdate();
 	CVector3 vec = CVector3::Zero;
-	CVector3 toTarget = m_playerInfo.Position - m_position;
+	CVector3 toTarget = Target - m_position;
 	toTarget.Normalize();
 	float dotresult = toTarget.Dot(m_up);
 	vec += m_up * dotresult;
@@ -80,13 +94,13 @@ void Enemy::EnemyMovement()
 	vec += m_forward * dotresult;
 	vec.Normalize();
 
-
-
 	dir = vec.Dot(m_up);
 	qRot.SetRotationDeg(m_right, PITCH_SPEED * -dir * GameTime().GetFrameDeltaTime());
 	m_rotation.Multiply(qRot);
 	AxisUpdate();
-	m_moveSpeed += m_forward * 20000.0f;
+
+
+	m_moveSpeed += m_forward * m_speed;
 	m_position += m_moveSpeed * GameTime().GetFrameDeltaTime();
 }
 
