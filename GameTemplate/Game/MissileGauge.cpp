@@ -31,12 +31,12 @@ bool MissileGauge::Start()
 	m_gauge->Init(
 		L"sprite/Ui_MissileBark.dds",
 		450.0f,
-		7.0f,
+		45.0f,
 		false
 	);
 	m_scale = { 1.0f,1.0f,0.0f };
 	m_gauge->SetPivot({ 1.0f, 0.0f });
-	m_gaugePos = { 650.0f,-344.6f,0.0f };
+	m_gaugePos = { 650.0f,-360.0f,0.0f };
 	m_gauge->SetPosition(m_gaugePos);
 	m_gauge->SetScale(m_scale);
 
