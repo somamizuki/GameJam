@@ -8,7 +8,8 @@ HPbar::HPbar()
 }
 HPbar::~HPbar()
 {
-
+	DeleteGO(m_sprite);
+	DeleteGO(m_backsprite);
 }
 
 bool HPbar::Start()
@@ -20,7 +21,6 @@ bool HPbar::Start()
 
 void HPbar::Update()
 {
-	
 }
 
 void HPbar::MainBar()
@@ -45,29 +45,24 @@ void HPbar::MainBar()
 void HPbar::BarBack()
 {
 	//HPバーの背景の生成
-	m_sprite = NewGO<prefab::CSpriteRender>(0);
-	m_sprite->Init(
+	m_backsprite = NewGO<prefab::CSpriteRender>(0);
+	m_backsprite->Init(
 		L"sprite/Ui_BackGround.dds",
 		695.0f,
 		45.0f,
 		false
 	);
-	m_sprite->SetPivot({ 0.0f,1.0f });		//ピポット
-	m_position = { -640.0f,360.0f,0.0f };	//表示位置
-	m_sprite->SetPosition(m_position);		//位置を伝える
+	m_backsprite->SetPivot({ 0.0f,1.0f });		//ピポット
+	m_backPos = { -640.0f,360.0f,0.0f };	//表示位置
+	m_backsprite->SetPosition(m_backPos);		//位置を伝える
 }
-/*
+
 void HPbar::ReduceHpBar()
-{
-	//プレイヤーのHPがいくつ減ったのか計算
-	50 - m_hp = m_reduceHp;			
+{	
 
 	//プレイヤーのHPとHPバーを同期させる
 	if (m_player != nullptr) {
-		if (m_reduceHp >= 5) {
-			m_scale -= {-0.1f, 0.0f, 0.0f};
+			m_scale -= {0.1f, 0.0f, 0.0f};
 			m_sprite->SetScale(m_scale);
-		}
 	}
 }
-*/
