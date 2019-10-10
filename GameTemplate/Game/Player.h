@@ -1,5 +1,6 @@
 #pragma once
 
+class PlayerMissile;
 class Player :public IGameObject
 {
 	
@@ -41,6 +42,16 @@ public:
 		return m_up;
 	}
 
+	void SetPosition(const CVector3& position)
+	{
+		m_position = position;
+	}
+
+	void SetRotation(const CQuaternion& rotation)
+	{
+		m_rotation = rotation;
+	}
+
 	void AddDamage(float damage)
 	{
 		m_hp -= damage;
@@ -50,6 +61,7 @@ private:
 	void Execute();
 	void Movement();
 	void AxisUpdate();
+	void MissileManager();
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;
 	CVector3 m_position = {0.0f,500.0f,0.0f};
 	CQuaternion m_rotation = CQuaternion::Identity;
@@ -60,7 +72,13 @@ private:
 	CVector3 m_up = CVector3::Up;
 	float m_speed = 0.0f;
 	CVector3 m_moveSpeed = CVector3::Zero;
-
+	PlayerMissile* m_missile = nullptr;
+	CLevel m_level;
 	float m_hp = 50.0f;
+
+	CVector3 m_tomissilePos = CVector3::Zero;
+
+	CShaderResourceView m_normalSRV;
+	CShaderResourceView m_emissionSRV;
 };
 

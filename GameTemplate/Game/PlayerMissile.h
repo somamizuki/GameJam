@@ -23,9 +23,10 @@ public:
 	{
 		m_rotation = rotation;
 	}
-	void Fire()
+	void Fire(float speed)
 	{
 		m_isFire = true;
+		m_speed = speed;
 	}
 private:
 	void Homing();
@@ -39,7 +40,10 @@ private:
 		CQuaternion m_rotation = CQuaternion::Identity;
 		float m_toMiniMissileDist = 0.0f;
 	};
-	std::vector< SMiniMissile> m_sMiniMissileArray;
-	bool m_isFire = true;
+	std::vector<SMiniMissile> m_sMiniMissileArray;
+	bool m_isFire = false;
+	float m_speed = 0.0f;
+	float m_timer = 0.0f;
+	const float MAX_SPEED = 20000.0f;
 };
 
