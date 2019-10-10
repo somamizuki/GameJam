@@ -37,6 +37,15 @@ public:
 		return m_up;
 	}
 
+	void SetPosition(const CVector3& position)
+	{
+		m_position = position;
+	}
+
+	void SetRotation(const CQuaternion& rotation)
+	{
+		m_rotation = rotation;
+	}
 
 private:
 
