@@ -73,5 +73,6 @@
     <ImageContentTask Include="Assets\sprite\Ui_BackGround.png" />
     <ImageContentTask Include="Assets\sprite\ui_HpBar.png" />
     <ImageContentTask Include="Assets\sprite\ui_PressA.png" />
+    <ImageContentTask Include="Assets\modelData\StarSparrow_Normal.png" />
   </ItemGroup>
 </Project>
