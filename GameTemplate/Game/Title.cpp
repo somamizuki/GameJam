@@ -7,7 +7,7 @@ bool Title::Start()
 	m_sprite->Init(L"sprite/TestTitle2.dds" ,1280.0f, 720.0f);
 
 	m_pressA = NewGO <prefab::CSpriteRender>(0);
-	m_pressA->Init(L"sprite/ui_PressA.dds",1280.0f,720.0f,false);
+	m_pressA->Init(L"sprite/ui_PressA.dds",1280.0f,720.0f);
 
 	m_scale = { 0.7f,0.7f,0.0f };
 	m_pressA->SetScale(m_scale);
