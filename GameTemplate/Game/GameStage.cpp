@@ -55,6 +55,7 @@ bool GameStage::Start()
 				material->SetSpecularMap(m_specSRV.GetBody());
 			});
 			m_testStage->SetShadowReceiverFlag(true);
+			m_rigidBody.CreateMesh(objectdata.position, objectdata.rotation, m_testStage->GetSkinModelData());
 		}
 		else if (std::wcscmp(objectdata.name, L"island") == 0)
 		{

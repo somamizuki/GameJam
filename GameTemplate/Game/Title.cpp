@@ -18,7 +18,13 @@ bool Title::Start()
 
 void Title::Update()
 {
-	if (Pad(0).IsTrigger(enButtonA))m_isGameStart = true;
+	if (Pad(0).IsTrigger(enButtonA)){
+		m_isGameStart = true;
+		m_sound = NewGO<prefab::CSoundSource>(0);
+		m_sound->Init(L"sound/t_select.wav");
+		m_sound->SetVolume(0.5f);
+		m_sound->Play(false);
+	}
 	CVector4 AddColor = CVector4::White;
 	if (m_isGameStart)m_mulColor = m_mulColor-AddColor * 1.0f * GameTime().GetFrameDeltaTime();
 	m_mulColor.w = 1.0f;
@@ -28,7 +34,7 @@ void Title::Update()
 	
 	int a = GraphicsEngine().GetFrameBufferWidth();
 	int b = 0;
-
+	
 
 }
 
