@@ -23,9 +23,13 @@ bool Player::Start()
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetRotation(m_rotation);
 	m_skinModelRender->SetScale(m_scale);
+	m_skinModelRender->SetShadowCasterFlag(true);
+	m_skinModelRender->SetShadowReceiverFlag(true);
 	m_normalSRV.CreateFromDDSTextureFromFile(L"modelData/StarSparrow_Normal.dds");
+	m_specSRV.CreateFromDDSTextureFromFile(L"modelData/spec.dds");
 	m_skinModelRender->FindMaterial([&](auto material) {
 		material->SetNormalMap(m_normalSRV.GetBody());
+		material->SetSpecularMap(m_specSRV.GetBody());
 	});
 	CVector3 ppos;
 	CVector3 mpos;

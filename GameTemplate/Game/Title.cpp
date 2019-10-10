@@ -20,7 +20,7 @@ void Title::Update()
 {
 	if (Pad(0).IsTrigger(enButtonA))m_isGameStart = true;
 	CVector4 AddColor = CVector4::White;
-	if (m_isGameStart)m_mulColor = m_mulColor-AddColor * 0.5f * GameTime().GetFrameDeltaTime();
+	if (m_isGameStart)m_mulColor = m_mulColor-AddColor * 1.0f * GameTime().GetFrameDeltaTime();
 	m_mulColor.w = 1.0f;
 	m_sprite->SetMulColor(m_mulColor);
 	m_pressA->SetMulColor(m_mulColor);
