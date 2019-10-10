@@ -24,6 +24,7 @@ private:
 	prefab::CDirectionLight* m_light=nullptr;
 	CVector3 m_direction = { 1.0f,-1.0f,0.0f };
 	CShaderResourceView m_specSRV;
-
+	bool isGameclear = false;
+	bool isGameover = false;
 };
 
