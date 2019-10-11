@@ -70,6 +70,14 @@ private:
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CVector3 m_scale = CVector3::One;
 
+	prefab::CSpriteRender* m_spriteUiRender = nullptr;
+	CVector3 m_UiPosition = CVector3::Zero;
+	CVector3 m_UiScale = CVector3::One;
+
+	prefab::CSpriteRender* m_spriteRender = nullptr;
+	CVector3 m_UiTarget = CVector3::Zero;
+	CVector3 m_UiTargetScale = CVector3::One;
+
 	CVector3 m_forward = CVector3::Front;
 	CVector3 m_right = CVector3::Right;
 	CVector3 m_up = CVector3::Up;
