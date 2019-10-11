@@ -23,7 +23,6 @@ Player::~Player()
 bool Player::Start()
 {
 	m_characon.Init(500.0f, 500.0f, m_position);
-
 	m_spriteUiRender = NewGO<prefab::CSpriteRender>(0);
 	m_spriteUiRender->Init(L"sprite/ui_Default.dds",
 		1280.0f,
@@ -41,7 +40,7 @@ bool Player::Start()
 	);
 	m_spriteRender->SetScale(m_UiTargetScale);
 	m_spriteRender->SetPosition(m_UiTarget);
-
+	
 	m_missileGauge = NewGO<MissileGauge>(0);
 
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
@@ -80,6 +79,17 @@ void Player::Update()
 {
 	AxisUpdate();
 	Movement();
+	if (effect->IsPlay() != true) {
+		prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
+		effect->Play(L"effect/MissileSmoke.efk");
+		m_animPos = m_position;
+		m_animScale = CVector3::One * 20.0f;
+		effect->SetScale(m_animScale);
+		
+	}
+	effect->SetPosition(m_position + m_forward * -700.0f);
+	effect->SetRotation(m_rotation);
+	
 	MissileManager();
 	Execute();
 }
