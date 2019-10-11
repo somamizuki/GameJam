@@ -22,7 +22,7 @@ void Title::Update()
 		m_isGameStart = true;
 		m_sound = NewGO<prefab::CSoundSource>(0);
 		m_sound->Init(L"sound/t_select.wav");
-		m_sound->SetVolume(0.5f);
+		m_sound->SetVolume(0.8f);
 		m_sound->Play(false);
 	}
 	CVector4 AddColor = CVector4::White;
