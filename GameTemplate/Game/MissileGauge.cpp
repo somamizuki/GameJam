@@ -8,8 +8,6 @@ MissileGauge::MissileGauge()
 
 MissileGauge::~MissileGauge()
 {
-	DeleteGO(m_back);
-	DeleteGO(m_gauge);
 }
 
 bool MissileGauge::Start()
@@ -46,4 +44,10 @@ bool MissileGauge::Start()
 
 void MissileGauge::Update()
 {
+}
+
+void MissileGauge::OnDestroy()
+{
+	DeleteGO(m_back);
+	DeleteGO(m_gauge);
 }

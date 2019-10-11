@@ -3,6 +3,7 @@
 class PlayerMissile;
 class Enemy;
 class GameStage;
+class MissileGauge;
 class Player :public IGameObject
 {
 
@@ -77,6 +78,8 @@ private:
 	prefab::CSpriteRender* m_spriteRender = nullptr;
 	CVector3 m_UiTarget = CVector3::Zero;
 	CVector3 m_UiTargetScale = CVector3::One;
+
+	MissileGauge* m_missileGauge = nullptr;
 
 	CVector3 m_forward = CVector3::Front;
 	CVector3 m_right = CVector3::Right;
