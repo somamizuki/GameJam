@@ -79,6 +79,7 @@
     <ImageContentTask Include="Assets\sprite\Ui_MissileBark.png" />
     <ImageContentTask Include="Assets\modelData\spec.png" />
     <ImageContentTask Include="Assets\modelData\StarSparrow_Normal.png" />
+    <ImageContentTask Include="Assets\sprite\t_Title.png" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\sound\t_select.wav" />

@@ -4,7 +4,7 @@
 bool Title::Start()
 {
 	m_sprite = NewGO<prefab::CSpriteRender>(0);
-	m_sprite->Init(L"sprite/TestTitle2.dds" ,1280.0f, 720.0f);
+	m_sprite->Init(L"sprite/t_Title.dds" ,1280.0f, 720.0f);
 
 	m_pressA = NewGO <prefab::CSpriteRender>(0);
 	m_pressA->Init(L"sprite/ui_PressA.dds",1280.0f,720.0f);
