@@ -52,6 +52,7 @@ private:
 
 	void GetPlayerInfo();		//プレイヤーの情報を取得
 	void EnemyMovement();		//敵の立ち回り
+	void PlayEffect();			//エフェクトの再生
 	void FollowPlayer();		//プレイヤーに追従させる処理
 	void AxisUpdate();
 	float AcosWrapper(float dotresult)
@@ -77,6 +78,9 @@ private:
 	CVector3 m_position = { 0.0f,1000.0f,0.0f };				//ポジションの定義
 	CQuaternion m_rotation = CQuaternion::Identity;				//クォータニオンの定義
 	CVector3 m_scale = CVector3::One;							//大きさの定義
+
+	prefab::CEffect* m_effect = nullptr;
+	bool isEffectPlay = false;
 
 	//ベクトルの方向の定義
 	CVector3 m_forward = CVector3::Front;

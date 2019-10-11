@@ -39,6 +39,7 @@ void Enemy::Update()
 	GetPlayerInfo();
 	EnemyMovement();
 	EnemyUi();
+	PlayEffect();
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetRotation(m_rotation);
 	m_skinModelRender->SetScale(m_scale);
@@ -111,6 +112,29 @@ void Enemy::EnemyMovement()
 
 	m_moveSpeed += m_forward * m_speed;
 	m_position += m_moveSpeed * GameTime().GetFrameDeltaTime();
+}
+
+void Enemy::PlayEffect()
+{
+	if (!(isEffectPlay))
+	{
+		m_effect = NewGO<prefab::CEffect>(0);
+		m_effect->Play(L"effect/AfterBuner.efk");
+		CVector3 effectScale = CVector3::One * 100.0f;
+		m_effect->SetScale(effectScale);
+	}
+	if (m_effect != nullptr) {
+		CVector3 effectPos = m_position;
+		effectPos -= m_forward * 500.0f;
+		isEffectPlay = m_effect->IsPlay();
+		m_effect->SetPosition(effectPos);
+
+		CQuaternion qRot;
+		qRot.SetRotationDeg(m_right, 180.0f);
+		CQuaternion rotation = m_rotation;
+		rotation.Multiply(qRot);
+		m_effect->SetRotation(rotation);
+	}
 }
 
 void Enemy::FollowPlayer()
