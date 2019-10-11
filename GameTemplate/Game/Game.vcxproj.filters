@@ -88,5 +88,8 @@
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\sound\t_select.wav" />
+    <CustomBuild Include="Assets\effect\Texture\Particle01.png" />
+    <CustomBuild Include="Assets\effect\Texture\LaserMain01.png" />
+    <CustomBuild Include="Assets\effect\AfterBuner.efk" />
   </ItemGroup>
 </Project>
