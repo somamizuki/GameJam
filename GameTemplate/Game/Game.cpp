@@ -23,11 +23,17 @@ bool Game::Start()
 
 void Game::Update()
 {
+	if (m_stage && m_stage->IsDead())
+	{
+		m_stage = nullptr;
+		m_title = NewGO<Title>(0, "title");
+	}
 	if (m_title != nullptr && m_title->IsDead())m_title = nullptr;
 	if (m_title == nullptr)
 	{
 		if (!m_stage)
 		{
+
 			m_stage = NewGO<GameStage>(0, "stage");
 		}
 		else

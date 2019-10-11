@@ -29,7 +29,7 @@ bool GameStage::Start()
 	m_light->SetColor(color);
 	m_light->SetDirection(m_direction);
 	
-	m_hpbar = NewGO<HPbar>(0, "Hpbar");
+	//m_hpbar = NewGO<HPbar>(0, "Hpbar");
 	m_sky = NewGO<prefab::CSky>(0);
 	m_sky->SetScale({ 800000.0f,800000.0f ,800000.0f });
 		m_level.Init(L"level/stage_level.tkl", [&](LevelObjectData& objectdata) {
@@ -77,14 +77,22 @@ bool GameStage::Start()
 
 void GameStage::Update()
 {
-	if (Pad(0).IsTrigger(enButtonY))m_isGameClear = true;
-	if (m_isGameClear && m_sprite == nullptr) {
+	int i = 0;
+	for (const auto& enemy : m_enemyArray)
+	{
+		if (enemy->IsDead())i++;
+	}
+	if (i == m_enemyArray.size())
+	{
+		m_isGameClear = true;
+	}
+	if (m_isGameClear) {
 		m_sprite = NewGO<prefab::CSpriteRender>(0);
 		m_sprite->Init(L"sprite/GameClear.dds",1280.0f,720.0f);
-	}else if(m_isGameOver && m_sprite == nullptr) {
+	}/*else if(m_isGameOver && m_sprite == nullptr) {
 		m_sprite = NewGO<prefab::CSpriteRender>(0);
 		m_sprite->Init(L"sprite/GameOver.dds", 1280.0f, 720.0f);
-	}
+	}*/
 	if (m_sprite != nullptr && Pad(0).IsTrigger(enButtonA)) {
 		DeleteGO(this);
 	}
@@ -94,7 +102,7 @@ void GameStage::OnDestroy()
 {
 	DeleteGO(m_camera);
 	DeleteGO(m_light);
-	DeleteGO(m_hpbar);
+	//DeleteGO(m_hpbar);
 	DeleteGO(m_sky);
 	DeleteGO(m_player);
 	DeleteGO(m_sprite);

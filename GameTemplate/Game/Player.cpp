@@ -79,7 +79,7 @@ void Player::Update()
 {
 	AxisUpdate();
 	Movement();
-	if (effect->IsPlay() != true) {
+	/*if (effect->IsPlay() != true) {
 		prefab::CEffect* effect = NewGO<prefab::CEffect>(0);
 		effect->Play(L"effect/MissileSmoke.efk");
 		m_animPos = m_position;
@@ -88,7 +88,7 @@ void Player::Update()
 		
 	}
 	effect->SetPosition(m_position + m_forward * -700.0f);
-	effect->SetRotation(m_rotation);
+	effect->SetRotation(m_rotation);*/
 	
 	MissileManager();
 	Execute();

@@ -1874,25 +1874,6 @@
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\ui_Default.png" />
   </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="Assets\effect\AfterBuner.efk">
-      <FileType>Document</FileType>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="Assets\effect\Texture\1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="Assets\effect\Texture\LaserMain01.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="Assets\effect\Texture\Particle01.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="Assets\effect\MissileSmoke.efk">
-      <FileType>Document</FileType>
-    </CustomBuild>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />

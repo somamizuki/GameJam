@@ -14,21 +14,26 @@ Enemy::~Enemy()
 
 bool Enemy::Start()
 {
-	m_spriteRender = NewGO<prefab::CSpriteRender>(0);
-	m_spriteRender->Init(L"sprite/ui_TargetLock.dds",
-		75.0f,
-		75.0f,
-		false
-	);
-	m_spriteRender->SetScale(m_UiScale);
-	m_spriteRender->SetPosition(m_UiPosition);
-	
+	//m_spriteRender = NewGO<prefab::CSpriteRender>(0);
+	//m_spriteRender->Init(L"sprite/ui_TargetLock.dds",
+	//	75.0f,
+	//	75.0f,
+	//	false
+	////);
+	//m_spriteRender->SetScale(m_UiScale);
+	//m_spriteRender->SetPosition(m_UiPosition);
+
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);		//スキンモデルレンダー
 	m_skinModelRender->Init(L"modelData/Enemy.cmo");									//表示したいモデルのパス
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetRotation(m_rotation);
 	m_skinModelRender->SetScale(m_scale);
 	//skinModelRender->SetShadowCasterFlag(true);					//モデルの影を描画
+
+//	m_effect = NewGO<prefab::CEffect>(0);
+//	m_effect->Play(L"effect/MissileSmoke.efk");
+	CVector3 effectScale = CVector3::One * 100.0f;
+	//m_effect->SetScale(effectScale);
 
 	m_player = FindGO<Player>("player");
 	return true;
@@ -38,7 +43,6 @@ void Enemy::Update()
 {
 	GetPlayerInfo();
 	EnemyMovement();
-	EnemyUi();
 	PlayEffect();
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetRotation(m_rotation);
@@ -48,6 +52,7 @@ void Enemy::Update()
 void Enemy::OnDestroy()
 {
 	DeleteGO(m_skinModelRender);		//skinModelRenderをdelete
+	//DeleteGO(m_effect);
 }
 
 void Enemy::GetPlayerInfo()
@@ -116,25 +121,20 @@ void Enemy::EnemyMovement()
 
 void Enemy::PlayEffect()
 {
-	if (!(isEffectPlay))
-	{
-		m_effect = NewGO<prefab::CEffect>(0);
-		m_effect->Play(L"effect/AfterBuner.efk");
-		CVector3 effectScale = CVector3::One * 100.0f;
-		m_effect->SetScale(effectScale);
-	}
-	if (m_effect != nullptr) {
-		CVector3 effectPos = m_position;
-		effectPos -= m_forward * 500.0f;
-		isEffectPlay = m_effect->IsPlay();
-		m_effect->SetPosition(effectPos);
-
-		CQuaternion qRot;
-		qRot.SetRotationDeg(m_right, 180.0f);
-		CQuaternion rotation = m_rotation;
-		rotation.Multiply(qRot);
-		m_effect->SetRotation(rotation);
-	}
+	//if (!(isEffectPlay))
+	//{
+	//	m_effect = NewGO<prefab::CEffect>(0);
+	//	m_effect->Play(L"effect/MissileSmoke.efk");
+	//	CVector3 effectScale = CVector3::One * 100.0f;
+	//	m_effect->SetScale(effectScale);
+	//}
+	//if (m_effect != nullptr) {
+	//	CVector3 effectPos = m_position;
+	//	effectPos -= m_forward * 750.0f;
+	//	//isEffectPlay = m_effect->IsPlay();
+	//	m_effect->SetPosition(effectPos);
+	//	m_effect->SetRotation(m_rotation);
+	//}
 }
 
 void Enemy::FollowPlayer()

@@ -50,7 +50,7 @@ void PlayerMissile::Update()
 
 	if (m_isFire)
 	{
-		if (m_enemy)Homing();
+		if (m_enemy&& !m_enemy->IsDead())Homing();
 		AxisUpdate();
 
 		m_moveSpeed = m_forward * m_speed * GameTime().GetFrameDeltaTime();
@@ -66,7 +66,7 @@ void PlayerMissile::Update()
 			minimissile.m_right.Normalize();
 			minimissile.m_up.Normalize();
 			minimissile.m_forward.Normalize();
-			if (m_enemy)
+			if (m_enemy && !m_enemy->IsDead())
 			{
 				CVector3 toEnemy = m_enemy->GetPosition() - m_position;
 				if (toEnemy.Length() < 1000.0f)
