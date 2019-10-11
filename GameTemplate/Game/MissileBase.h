@@ -15,6 +15,7 @@ public:
 		m_isFire = true;
 		m_speed = speed;
 	}
+
 protected:
 	void AxisUpdate()
 	{

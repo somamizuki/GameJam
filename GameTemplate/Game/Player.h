@@ -97,5 +97,9 @@ private:
 	prefab::CEffect* m_effect = nullptr;
 	CCharacterController m_characon;
 	GameStage* m_stage = nullptr;
+
+	prefab::CEffect* effect = NewGO <prefab::CEffect>(0);
+	CVector3 m_animPos = CVector3::Zero;
+	CVector3 m_animScale = CVector3::One;
 };
 
