@@ -16,8 +16,8 @@ bool Enemy::Start()
 {
 	m_spriteRender = NewGO<prefab::CSpriteRender>(0);
 	m_spriteRender->Init(L"sprite/ui_Target.dds",
-		150.0f,
-		150.0f,
+		75.0f,
+		75.0f,
 		false
 	);
 	m_spriteRender->SetScale(m_UiScale);
