@@ -9,6 +9,7 @@ public:
 	~MissileGauge();
 	bool Start();
 	void Update();
+	void OnDestroy();
 
 private:
 	PlayerMissile* m_missile;

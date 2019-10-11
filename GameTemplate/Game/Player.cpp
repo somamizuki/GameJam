@@ -3,6 +3,7 @@
 #include "PlayerMissile.h"
 #include "Enemy.h"
 #include "GameStage.h"
+#include "MissileGauge.h"
 
 namespace {
 	const float MAX_SPEED = 20000.0f;
@@ -22,6 +23,26 @@ Player::~Player()
 bool Player::Start()
 {
 	m_characon.Init(500.0f, 500.0f, m_position);
+
+	m_spriteUiRender = NewGO<prefab::CSpriteRender>(0);
+	m_spriteUiRender->Init(L"sprite/ui_Default.dds",
+		1280.0f,
+		720.0f,
+		false
+	);
+	m_spriteUiRender->SetScale(m_UiScale);
+	m_spriteUiRender->SetPosition(m_UiPosition);
+
+	m_spriteRender = NewGO<prefab::CSpriteRender>(0);
+	m_spriteRender->Init(L"sprite/ui_Target.dds",
+		75.0f,
+		75.0f,
+		false
+	);
+	m_spriteRender->SetScale(m_UiTargetScale);
+	m_spriteRender->SetPosition(m_UiTarget);
+
+	m_missileGauge = NewGO<MissileGauge>(0);
 
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);
 	m_skinModelRender->Init(L"modelData/StarSparrow.cmo");
@@ -61,6 +82,15 @@ void Player::Update()
 	Movement();
 	MissileManager();
 	Execute();
+}
+
+void Player::OnDestroy()
+{
+	DeleteGO(m_skinModelRender);
+	DeleteGO(m_missile);
+	DeleteGO(m_spriteUiRender);
+	DeleteGO(m_spriteRender);
+	DeleteGO(m_missileGauge);
 }
 
 void Player::Execute()

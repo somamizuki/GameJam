@@ -3,6 +3,7 @@
 class PlayerMissile;
 class Enemy;
 class GameStage;
+class MissileGauge;
 class Player :public IGameObject
 {
 
@@ -11,6 +12,7 @@ public:
 	~Player();
 	bool Start();
 	void Update();
+	void OnDestroy();
 	/*!
 	* @brief ポジションを取得
 	* @return ポジション
@@ -68,6 +70,16 @@ private:
 	CVector3 m_position = { 0.0f,500.0f,0.0f };
 	CQuaternion m_rotation = CQuaternion::Identity;
 	CVector3 m_scale = CVector3::One;
+
+	prefab::CSpriteRender* m_spriteUiRender = nullptr;
+	CVector3 m_UiPosition = CVector3::Zero;
+	CVector3 m_UiScale = CVector3::One;
+
+	prefab::CSpriteRender* m_spriteRender = nullptr;
+	CVector3 m_UiTarget = CVector3::Zero;
+	CVector3 m_UiTargetScale = CVector3::One;
+
+	MissileGauge* m_missileGauge = nullptr;
 
 	CVector3 m_forward = CVector3::Front;
 	CVector3 m_right = CVector3::Right;

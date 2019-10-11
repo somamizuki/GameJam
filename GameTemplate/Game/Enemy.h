@@ -8,6 +8,7 @@ public:
 	~Enemy();
 	bool Start();
 	void Update();
+	void EnemyUi();
 	void OnDestroy();
 
 	//ポジションの取得
@@ -68,9 +69,12 @@ private:
 		CVector3 Up = CVector3::Zero;
 	};
 
+	prefab::CSpriteRender* m_spriteRender = nullptr;			//スプライトレンダーの定義
+	CVector3 m_UiScale = CVector3::One;							//スプライトの大きさ
+	CVector3 m_UiPosition = CVector3::Zero;						//スプライトの場所
 
 	prefab::CSkinModelRender* m_skinModelRender = nullptr;		//スキンモデルレンダーの定義
-	CVector3 m_position = { 0.0f,1000.0f,0.0f };						//ポジションの定義
+	CVector3 m_position = { 0.0f,1000.0f,0.0f };				//ポジションの定義
 	CQuaternion m_rotation = CQuaternion::Identity;				//クォータニオンの定義
 	CVector3 m_scale = CVector3::One;							//大きさの定義
 

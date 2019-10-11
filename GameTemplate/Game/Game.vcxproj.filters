@@ -79,6 +79,12 @@
     <ImageContentTask Include="Assets\sprite\Ui_MissileBark.png" />
     <ImageContentTask Include="Assets\modelData\spec.png" />
     <ImageContentTask Include="Assets\modelData\StarSparrow_Normal.png" />
+    <ImageContentTask Include="Assets\sprite\t_Title.png" />
+    <ImageContentTask Include="Assets\sprite\ui_Target.png" />
+    <ImageContentTask Include="Assets\sprite\GameClear.png" />
+    <ImageContentTask Include="Assets\sprite\GameOver.png" />
+    <ImageContentTask Include="Assets\sprite\ui_TargetLock.png" />
+    <ImageContentTask Include="Assets\sprite\ui_Default.png" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Assets\sound\t_select.wav" />
