@@ -34,5 +34,6 @@ private:
 	prefab::CSpriteRender* m_sprite = nullptr;
 	bool m_isGameClear = false;
 	bool m_isGameOver = false;
+	bool m_flag = false;
 };
 

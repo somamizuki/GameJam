@@ -86,9 +86,10 @@ void GameStage::Update()
 	{
 		m_isGameClear = true;
 	}
-	if (m_isGameClear) {
+	if (m_isGameClear&& !m_flag) {
 		m_sprite = NewGO<prefab::CSpriteRender>(0);
 		m_sprite->Init(L"sprite/GameClear.dds",1280.0f,720.0f);
+		m_flag = true;
 	}/*else if(m_isGameOver && m_sprite == nullptr) {
 		m_sprite = NewGO<prefab::CSpriteRender>(0);
 		m_sprite->Init(L"sprite/GameOver.dds", 1280.0f, 720.0f);
@@ -107,8 +108,4 @@ void GameStage::OnDestroy()
 	DeleteGO(m_player);
 	DeleteGO(m_sprite);
 	DeleteGO(m_testStage);
-	for (auto& enemy : m_enemyArray)
-	{
-		DeleteGO(enemy);
-	}
 }
