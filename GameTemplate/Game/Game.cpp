@@ -32,7 +32,10 @@ void Game::Update()
 		}
 		else
 		{
-			//if(m_stage)
+			if (m_stage->IsDead()) {
+				m_stage = nullptr;
+				m_title = NewGO<Title>(0, "title");
+			}
 		}
 	}
 

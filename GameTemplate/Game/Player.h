@@ -11,6 +11,7 @@ public:
 	~Player();
 	bool Start();
 	void Update();
+	void OnDestroy();
 	/*!
 	* @brief ポジションを取得
 	* @return ポジション
