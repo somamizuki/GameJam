@@ -10,6 +10,11 @@ public:
 	void MainBar();
 	void BarBack();
 
+	const CVector3 &GetHpBar() const
+	{
+		return m_scale;
+	}
+
 private:
 	void ReduceHpBar();
 

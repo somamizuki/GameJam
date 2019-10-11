@@ -1794,6 +1794,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Preview_Low|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Title.cpp" />
+    <ClCompile Include="Ui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemy.h" />
@@ -1809,6 +1810,7 @@
     <CLInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title.h" />
+    <ClInclude Include="Ui.h" />
     <ResourceCompile Include="Game.rc" />
   </ItemGroup>
   <ItemGroup>
@@ -1860,6 +1862,9 @@
   </ItemGroup>
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\t_Title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\ui_Target.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
