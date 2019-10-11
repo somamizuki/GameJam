@@ -77,6 +77,13 @@ bool GameStage::Start()
 
 void GameStage::Update()
 {
+	for (const auto& enemy : m_enemyArray)
+	{
+		if (enemy->IsDead())
+		{
+			m_enemyArray.erase(std::remove(m_enemyArray.begin(), m_enemyArray.end(), enemy), m_enemyArray.end());
+		}
+	}
 	if (Pad(0).IsTrigger(enButtonY))m_isGameClear = true;
 	if (m_isGameClear && m_sprite == nullptr) {
 		m_sprite = NewGO<prefab::CSpriteRender>(0);
