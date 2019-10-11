@@ -15,7 +15,7 @@ Enemy::~Enemy()
 bool Enemy::Start()
 {
 	m_spriteRender = NewGO<prefab::CSpriteRender>(0);
-	m_spriteRender->Init(L"sprite/ui_Target.dds",
+	m_spriteRender->Init(L"sprite/ui_TargetLock.dds",
 		75.0f,
 		75.0f,
 		false
