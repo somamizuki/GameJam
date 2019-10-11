@@ -1866,6 +1866,10 @@
   <ItemGroup>
     <ImageContentTask Include="Assets\sprite\ui_Target.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ImageContentTask Include="Assets\sprite\GameClear.png" />
+    <ImageContentTask Include="Assets\sprite\GameOver.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="$(VCTargetsPath)\BuildCustomizations\ImageContentTask.targets" />
