@@ -63,6 +63,12 @@ void Player::Update()
 	Execute();
 }
 
+void Player::OnDestroy()
+{
+	DeleteGO(m_skinModelRender);
+	DeleteGO(m_missile);
+}
+
 void Player::Execute()
 {
 

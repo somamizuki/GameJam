@@ -13,6 +13,7 @@ public:
 
 	bool Start();
 	void Update();
+	void OnDestroy();
 	const std::list<Enemy*>& GetEnemyArray() const
 	{
 		return m_enemyArray;
@@ -30,5 +31,8 @@ private:
 	CShaderResourceView m_specSRV;
 	CPhysicsStaticObject m_rigidBody;
 	std::list<Enemy*> m_enemyArray;
+	prefab::CSpriteRender* m_sprite = nullptr;
+	bool m_isGameClear = false;
+	bool m_isGameOver = false;
 };
 
