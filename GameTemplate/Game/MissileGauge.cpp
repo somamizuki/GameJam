@@ -23,7 +23,7 @@ bool MissileGauge::Start()
 		false
 	);
 	m_back->SetPivot({ 1.0f, 0.0f });
-	m_backPos = { 650.0f,-360.0f,0.0f };
+	m_backPos = { 643.2f,-360.0f,0.0f };
 	m_back->SetPosition(m_backPos);
 
 	//ミサイルゲージ。
@@ -36,7 +36,7 @@ bool MissileGauge::Start()
 	);
 	m_scale = { 1.0f,1.0f,0.0f };
 	m_gauge->SetPivot({ 1.0f, 0.0f });
-	m_gaugePos = { 650.0f,-360.0f,0.0f };
+	m_gaugePos = { 643.2f,-360.0f,0.0f };
 	m_gauge->SetPosition(m_gaugePos);
 	m_gauge->SetScale(m_scale);
 

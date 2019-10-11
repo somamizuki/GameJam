@@ -29,7 +29,6 @@
     <ClCompile Include="PlayerMissile.cpp" />
     <ClCompile Include="GameStage.cpp" />
     <ClCompile Include="MissileGauge.cpp" />
-    <ClCompile Include="Ui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">
@@ -47,7 +46,6 @@
     <ClInclude Include="PlayerMissile.h" />
     <ClInclude Include="GameStage.h" />
     <ClInclude Include="MissileGauge.h" />
-    <ClInclude Include="Ui.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Game.rc">
