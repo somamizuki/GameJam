@@ -14,7 +14,15 @@ Enemy::~Enemy()
 
 bool Enemy::Start()
 {
-
+	m_spriteRender = NewGO<prefab::CSpriteRender>(0);
+	m_spriteRender->Init(L"sprite/ui_Target.dds",
+		150.0f,
+		150.0f,
+		false
+	);
+	m_spriteRender->SetScale(m_UiScale);
+	m_spriteRender->SetPosition(m_UiPosition);
+	
 	m_skinModelRender = NewGO<prefab::CSkinModelRender>(0);		//スキンモデルレンダー
 	m_skinModelRender->Init(L"modelData/Enemy.cmo");									//表示したいモデルのパス
 	m_skinModelRender->SetPosition(m_position);
@@ -30,6 +38,7 @@ void Enemy::Update()
 {
 	GetPlayerInfo();
 	EnemyMovement();
+	EnemyUi();
 	m_skinModelRender->SetPosition(m_position);
 	m_skinModelRender->SetRotation(m_rotation);
 	m_skinModelRender->SetScale(m_scale);
@@ -119,4 +128,9 @@ void Enemy::AxisUpdate()
 	m_right.Normalize();
 	m_up.Normalize();
 	m_forward.Normalize();
+}
+
+void Enemy::EnemyUi()
+{
+
 }

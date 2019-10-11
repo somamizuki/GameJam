@@ -4,7 +4,7 @@
 bool Title::Start()
 {
 	m_sprite = NewGO<prefab::CSpriteRender>(0);
-	m_sprite->Init(L"sprite/TestTitle2.dds" ,1280.0f, 720.0f);
+	m_sprite->Init(L"sprite/t_Title.dds" ,1280.0f, 720.0f);
 
 	m_pressA = NewGO <prefab::CSpriteRender>(0);
 	m_pressA->Init(L"sprite/ui_PressA.dds",1280.0f,720.0f);
@@ -22,7 +22,7 @@ void Title::Update()
 		m_isGameStart = true;
 		m_sound = NewGO<prefab::CSoundSource>(0);
 		m_sound->Init(L"sound/t_select.wav");
-		m_sound->SetVolume(0.5f);
+		m_sound->SetVolume(0.8f);
 		m_sound->Play(false);
 	}
 	CVector4 AddColor = CVector4::White;
